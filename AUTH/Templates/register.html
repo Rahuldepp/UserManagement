@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Align to the top for scroll effect */
+        height: 100vh;
+        margin: 0;
+        overflow-y: scroll; /* Allow vertical scrolling */
+        scroll-behavior: smooth; /* Enable smooth scrolling */
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin-top: 20px; /* Margin for top spacing */
+      }
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .form-group select {
+        height: 40px;
+      }
+      .form-group textarea {
+        resize: vertical;
+      }
+      .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .submit-btn:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <br />
+    <a href="{% url 'home' %}"><strong>HOME</strong></a>
+    <br />
+    <br />
+
+    <div class="form-container">
+      <h2>Registration Form</h2>
+
+      <form action="#" method="post">
+        {% csrf_token %}
+
+        <!-- Personal Information Section -->
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first_name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last_name" required />
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password1">Password</label>
+          <input type="text" id="email" name="password1" required />
+        </div>
+        <div class="form-group">
+          <label for="password2">CNF Password</label>
+          <input type="text" id="email" name="password2" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mobile-number">Mobile Number</label>
+          <input type="tel" id="mobile-number" name="mobile_number" required />
+        </div>
+
+        <div class="form-group">
+          <label for="whatsapp-number">WhatsApp Number</label>
+          <input type="tel" id="whatsapp-number" name="whatsapp_number" />
+        </div>
+
+        <!-- Company Information Section -->
+        <div class="form-group">
+          <label for="company-name">Company Name</label>
+          <input type="text" id="company-name" name="company_name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="registration-no">Registration No</label>
+          <input
+            type="text"
+            id="registration-no"
+            name="registration_no"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="vat-no">VAT No</label>
+          <input type="text" id="vat-no" name="vat_no" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+
+        <!-- Role and Designation Section -->
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" required>
+            <option value="">Select Role</option>
+            <option value="Owner">Owner</option>
+            <option value="Director">Director</option>
+            <option value="Finance Manager">Finance Manager</option>
+            <option value="General Manager">General Manager</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="designation">Designation</label>
+          <input
+            type="text"
+            id="designation"
+            name="designation"
+            placeholder="e.g., Manager, Supervisor"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+      <div>
+        <a href="{% url 'home' %}"><strong>Already Registered</strong></a>
+      </div>
+      <br />
+    </div>
+  </body>
+  <div>
+    {%if messages %} {% for message in messages %}
+
+    <div>
+      <br />
+      {{message}}
+      <br />
+    </div>
+
+    {% endfor %} {%endif %}
+  </div>
+</html>

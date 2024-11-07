@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <!-- Link to the external CSS file -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .login-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      .login-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .submit-btn:hover {
+        background-color: #0056b3;
+      }
+      .register-link {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .register-link a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form action="#" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="email">Enter Your Email Or Phone No</label>
+          <input type="text" id="email" name="user_input" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="submit-btn">Login</button>
+      </form>
+      <div class="register-link">
+        <p>
+          Don't have an account?
+          <a href="/authentication/register/">Register here</a>
+        </p>
+      </div>
+      <div class="register-link">
+        <p>
+          <a href="{% url 'forgot_email_password' %}">Forgot Password</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
+
+{%if messages %} {% for message in messages %}
+
+<div>
+  <br />
+  {{message}}
+  <br />
+</div>
+
+{% endfor %} {%endif %}

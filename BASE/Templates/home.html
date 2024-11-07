@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      /* General page styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+      }
+
+      /* Navigation bar styling */
+      .navbar {
+        background-color: #333;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+      }
+
+      .navbar a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 15px;
+      }
+
+      .navbar a:hover {
+        color: #ddd;
+      }
+
+      .user-info {
+        background-color: #fff;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 500px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-info strong {
+        display: block;
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      /* Specific field styling */
+      .user-field {
+        color: #555;
+        font-weight: normal;
+        display: inline-block;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+      <div>
+        <a href="{% url 'home' %}">HOME</a>
+        <a href="authentication/register/">Register Yourself</a>
+      </div>
+      <div>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout_user' %}">Logout</a>
+        <strong>{{request.user.first_name}}</strong>
+        {% else %}
+        <a href="{% url 'login_user' %}">Login</a>
+        {% endif %}
+        <!--  -->
+      </div>
+    </div>
+
+    <!-- User Info Display -->
+
+    {% if request.user.is_authenticated %}
+    <!--  -->
+    {% for user in users%}
+    <!--  -->
+    {% if not user.is_superuser %}
+
+    <div class="user-info">
+      <strong
+        >First Name:<span class="user-field"
+          >{{ user.first_name }}</span
+        ></strong
+      >
+      <strong
+        >Last Name:<span class="user-field">{{ user.last_name }}</span></strong
+      >
+      <strong
+        >Company:<span class="user-field">{{ user.company_name }}</span></strong
+      >
+      <strong
+        >Registration No:<span class="user-field"
+          >{{ user.registration_no }}</span
+        ></strong
+      >
+      <strong>Role:<span class="user-field">{{ user.role }}</span></strong>
+    </div>
+    {% endif %} {%endfor%}
+    <!--  -->
+    {% endif %}
+  </body>
+</html>
