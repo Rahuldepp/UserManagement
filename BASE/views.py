@@ -4,6 +4,7 @@ from . models import*
 from django.contrib import messages
 from AUTH.views import *
 
+
 def home(request):
     user_obj=User.objects.all()
    
@@ -21,7 +22,7 @@ def delete_user(request,user_id):
 
 
     user=User.objects.get(id=user_id)
-    print(user.first_name)
+    
     user.delete()
     return redirect('/owner_director_view/',{'users':user_obj})
     
@@ -48,10 +49,7 @@ def user_creation_owner(request):
              messages.error(request,"Please provide a strong password" )
              return redirect('/user_creation_owner/')
 
-
-        print(email,mobile_number)
-        
-        print(first_name, email, password,role)
+ 
         try:
             if User.objects.filter(mobile_number=mobile_number).exists():
                 messages.error(request, "This mobile_number already exists")
@@ -70,6 +68,6 @@ def user_creation_owner(request):
             return redirect('/owner_director_view/')    
 
         except Exception as e:
-            print(e)
+             print(e)
     
     return render(request,'user_creation_owner.html')
